@@ -1,0 +1,43 @@
+.contact {
+    width: 100%;  
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-image:url('contact.jpeg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+
+.touch-form {
+    padding: 8px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+h10 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.buttons_main_page {
+    margin-top: 1px;
+    flex: 50%;
+
+}
+
+.figure-img {
+    border-radius: 52px;
+}
+.search_bar {
+    text-align: right;
+    flex: 50%;
+}
+h11 [
+    
+]

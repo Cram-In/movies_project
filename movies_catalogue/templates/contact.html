@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block head %} <title>Contact</title> {% endblock %}
+
+{% block content %}
+<div class="contact">
+
+    <form action="/contact/" method="POST">
+        <h10>Get in Touch</h10><br>
+        <input class="touch-form" id="name" type="text" name="name" placeholder="* Name">
+        <br>
+        <input class="touch-form" id="email" type="text" name="email" placeholder="Email">
+        <br>
+        <input class="touch-form" id="phone" type="text" name="phone" placeholder="Phone">
+        <br>
+        <textarea class="touch-form" style="box-sizing: content-box; name=" message"
+            placeholder="* Your message..."></textarea><br>
+        <button>Send Email</button>
+
+    </form>
+</div>
+
+
+{% endblock %}
