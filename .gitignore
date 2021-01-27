@@ -1,0 +1,8 @@
+movies_env
+__pycache__
+start.sh
+.vscode
+env
+__pycache__
+.ipynb_checkpoints
+tester.py
