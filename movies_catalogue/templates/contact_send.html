@@ -1,23 +1,25 @@
 {% extends "index.html" %}
 
-{% block head %} <title>Contact</title> {% endblock %}
+{% block head %}<title>Message Send</title>{% endblock %}
 
 {% block content %}
-<div class="contact">
-    <h11>Message Send</h11> <br>
-    <h11>Thanks You!</h11>
-    <img src="{{ url_for('static', filename='message_send.png')}}" alt="send" class="send">
 
+<div class="contact_send">
+
+    <div class="send_message">
+        <p>Message Send<br><br>Thanks You!</p>
+    </div>
+    <div class="send_message_image">
+        <img src="{{ url_for('static', filename='send.gif')}}" alt="send" class="send">
+    </div>
     <script>
         window.setTimeout(function () {
 
             // Move to homepage
             window.location.href = "/";
 
-        }, 5000);
+        }, 3000);
 
     </script>
 </div>
-
-
 {% endblock %}

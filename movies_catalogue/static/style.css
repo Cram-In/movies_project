@@ -38,6 +38,22 @@ h10 {
     text-align: right;
     flex: 50%;
 }
-h11 [
+.send_message {
+    text-align: center;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 30px;
+
+}
+.send_message_image {
+    text-align: center;
+}
+.contact_send {
+    width: 100%;  
+    min-height: 100vh;
     
-]
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
