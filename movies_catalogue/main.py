@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, flash
-from config import app
+from config import app, db
 import tmdb_client
 import random
-from model import Contacts, db
+from forms import ContactForm
 import errors
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 @app.route("/")
@@ -26,24 +29,31 @@ def get_services():
 
 @app.route("/contact/", methods=["POST", "GET"])
 def contact_us():
+    form = ContactForm()
     if request.method == "POST":
-        if (
-            not request.form["name"]
-            or not request.form["email"]
-            or not request.form["phone"]
-            or not request.form["message"]
-        ):
-            flash("Please enter all required data", "error")
-        else:
-            message = Contacts(
-                request.form["name"], request.form["email"], request.form["phone"], request.form["message"]
+        if not form.validate_on_submit():
+
+            email = request.form["email"]
+            name = request.form["name"]
+            title = request.form["title"]
+            message = request.form["message"]
+
+            message = Mail(
+                from_email=os.environ.get("MAIL_DEFAULT_SENDER"),
+                to_emails=os.environ.get("MAIL_DEFAULT_RECEIVER"),
+                subject=f"From {email}. Message title: {title} ",
+                html_content=f"<strong>Message from: <p>{name}.</p><p>From Email: {email}</p><p>MESSAGE:</p> <p>{message}</p> </strong>",
             )
-
-            db.session.add(message)
-            db.session.commit()
-
-            flash("Message successfully send.")
-            return render_template("/contact_send.html")
+            try:
+                sg = SendGridAPIClient(os.environ.get("SENDGRID_API_KEY"))
+                response = sg.send(message)
+                print(response.status_code)
+                print(response.body)
+                print(response.headers)
+                flash("Message Send.", "success")
+                return render_template("/contact_send.html")
+            except Exception as e:
+                print(f"error", e.body)
     return render_template("/contact.html")
 
 
