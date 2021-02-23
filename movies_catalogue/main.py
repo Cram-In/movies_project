@@ -22,11 +22,6 @@ def about_us():
     return render_template("about.html")
 
 
-@app.route("/services/")
-def get_services():
-    return render_template("services.html")
-
-
 @app.route("/contact/", methods=["POST", "GET"])
 def contact_us():
     form = ContactForm()
