@@ -1,5 +1,5 @@
 from flask import make_response, jsonify
-from model import app
+from config import app
 
 
 @app.errorhandler(404)

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, flash
-from config import app, db
+from config import app
 import tmdb_client
 import random
 from forms import ContactForm
@@ -82,11 +82,6 @@ def utility_processor():
         return tmdb_client.get_poster_url(path, size)
 
     return {"tmdb_image_url": tmdb_image_url}
-
-
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 
 if __name__ == "__main__":
