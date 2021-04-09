@@ -11,10 +11,13 @@ from sendgrid.helpers.mail import Mail
 
 @app.route("/")
 def homepage():
+    list_selection =["popular", "upcoming", "top_rated", "now_playing"]
     selected_list = request.args.get("list_type", "popular")
+    if selected_list not in list_selection:
+        selected_list = list_selection[0]
     movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
     random.shuffle(movies)
-    return render_template("homepage.html", movies=movies, current_list=selected_list)
+    return render_template("homepage.html", movies=movies, current_list=selected_list, list_selection=list_selection)
 
 
 @app.route("/about/")
