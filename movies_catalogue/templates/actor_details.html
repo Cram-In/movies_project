@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block head %} <title>Movies Library | Actor Info.</title> {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7">
+        <h1>{{ actor }}</h1>
+        {% for dict_item in cast %}
+        <figure class="figure"></figure>
+            {% if dict_item.name == actor %}            
+            <img src="{{ tmdb_image_url(dict_item.profile_path, 'w185') }}" class="figure-img img-fluid rounded"
+                alt="{{ actor }}">
+            {% else %}
+            {% endif %} 
+        {% endfor %}
+            {% for key, value in actor_info.items() %}
+                {% if key=="biography" %}
+            
+                <dt>Biography</dt>
+                <p>{{value}}</p>
+                {% else %}
+                {% endif %}
+        </figure>
+            {% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <h3> Personal Info</h3>
+        {% for key, value in actor_info.items() %}
+            {% if key=="known_for_department" %}
+            <dl>
+                <dt>Known For</dt>
+                <p>{{value}}</p>
+                {% else %}
+                {% endif %}             
+            
+                {% if key=="birthday" %}
+            
+                <dt>Birthdate</dt>
+                <p>{{value}}</p>
+                {% else %}
+                {% endif %}             
+            
+                {% if key=="place_of_birth" %}
+            
+                <dt>Place of Birth</dt>
+                <p>{{value}}</p>
+                {% else %}
+                {% endif %} 
+                
+                {% if key=="also_known_as" %}
+            
+                <dt>Also Known As</dt>
+                <p>{{value}}</p>
+                {% else %}
+                {% endif %}
+            </dl>
+                
+        {% endfor %}  
+    
+    </div>
+
+{% endblock %}

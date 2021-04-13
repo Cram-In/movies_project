@@ -7,11 +7,12 @@ import errors
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from funk import get_id
 
 
 @app.route("/")
 def homepage():
-    list_selection =["popular", "upcoming", "top_rated", "now_playing"]
+    list_selection = ["popular", "upcoming", "top_rated", "now_playing"]
     selected_list = request.args.get("list_type", "popular")
     if selected_list not in list_selection:
         selected_list = list_selection[0]
@@ -62,6 +63,15 @@ def movie_details(movie_id):
     movie_images = tmdb_client.get_movie_images(movie_id)
     selected_backdrop = random.choice(movie_images["backdrops"])
     return render_template("movie_details.html", movie=details, cast=cast, selected_backdrop=selected_backdrop)
+
+
+@app.route("/actor_details/<actor>&<movie_id>")
+def actors_details(movie_id, actor):
+
+    cast = tmdb_client.get_single_movie_cast(movie_id)
+    person_id = get_id(cast, actor)
+    actor_info = tmdb_client.get_person(person_id)
+    return render_template("actor_details.html", actor=actor, cast=cast, actor_info=actor_info)
 
 
 @app.route("/search")

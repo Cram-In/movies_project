@@ -1,11 +1,11 @@
 {% extends "index.html" %}
 
-{% block head %} <title>Movie Info.</title> {% endblock %}
+{% block head %} <title>Movies Library | Movie Info.</title> {% endblock %}
 
 {% block content %}
 <div class="container">
 
-    <h1 class="my-4">
+    <h1 class="my-4" style="text-align:center;">
         {{ movie.title }}
     </h1>
 
@@ -31,7 +31,7 @@
     <div class="row">
         {% for actor in cast %}
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
+            <a href="/actor_details/{{ actor.name }}&{{ movie.id }}">
                 <figure class="figure">
                     {% if actor.profile_path %}
                     <img src="{{ tmdb_image_url(actor.profile_path, 'w185') }}" class="figure-img img-fluid rounded"

@@ -44,6 +44,10 @@ def get_single_movie_cast(movie_id):
     return response.json()["cast"]
 
 
+def get_person(person_id):
+    return call_tmdb_api(f"person/{person_id}")
+
+
 def get_movie_images(movie_id):
     return call_tmdb_api(f"movie/{movie_id}/images")
 

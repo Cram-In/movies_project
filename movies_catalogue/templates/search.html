@@ -1,5 +1,7 @@
 {% extends "index.html" %}
 
+{% block head %} <title>Movies Library | Search results for {{ search_query }}</title> {% endblock %}
+
 {% block content %}
 
 <div class="row">
@@ -15,7 +17,7 @@
                 <h4 class="card-title">{{ movie.title }}</h4>
             </div>
             <div class="card-footer text-center">
-                <a href="{{ url_for('movie_details', movie_id=movie.id) }}" class="btn btn-primary">Pokaz więcej</a>
+                <a href="{{ url_for('movie_details', movie_id=movie.id) }}" class="btn btn-primary">More Info</a>
             </div>
         </div>
     </div>
